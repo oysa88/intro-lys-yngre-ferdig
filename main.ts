@@ -37,44 +37,6 @@ function fargevalg () {
     }
 }
 input.onButtonPressed(Button.A, function () {
-    program += 1
-    if (program > 4) {
-        program = 1
-    }
-})
-function plotProgram () {
-    basic.clearScreen()
-    if (fargenummer == 1) {
-        led.plot(4, 1)
-    } else if (fargenummer == 2) {
-        led.plot(3, 1)
-    } else if (fargenummer == 3) {
-        led.plot(3, 1)
-        led.plot(4, 1)
-    } else if (fargenummer == 4) {
-        led.plot(2, 1)
-    } else if (fargenummer == 5) {
-        led.plot(2, 1)
-        led.plot(4, 1)
-    } else if (fargenummer == 6) {
-        led.plot(2, 1)
-        led.plot(3, 1)
-    } else if (fargenummer == 7) {
-        led.plot(2, 1)
-        led.plot(3, 1)
-        led.plot(4, 1)
-    } else if (fargenummer == 8) {
-        led.plot(1, 1)
-    } else if (fargenummer == 9) {
-        led.plot(1, 1)
-        led.plot(4, 1)
-    } else if (fargenummer == 10) {
-        // Lag regnbue og lagre fargene
-        led.plot(1, 1)
-        led.plot(3, 1)
-    }
-}
-input.onButtonPressed(Button.B, function () {
     fargenummer += 1
     if (fargenummer == 10) {
         regnbue = true
@@ -85,6 +47,45 @@ input.onButtonPressed(Button.B, function () {
         fargenummer = 1
     }
 })
+function plotProgram () {
+    if (fargenummer == 1) {
+        basic.clearScreen()
+        led.plot(0, 4)
+    } else if (fargenummer == 2) {
+        led.plot(0, 3)
+    } else if (fargenummer == 3) {
+        led.plot(0, 2)
+    } else if (fargenummer == 4) {
+        led.plot(0, 1)
+    } else if (fargenummer == 5) {
+        led.plot(0, 0)
+    } else if (fargenummer == 6) {
+        led.plot(1, 4)
+    } else if (fargenummer == 7) {
+        led.plot(1, 3)
+    } else if (fargenummer == 8) {
+        led.plot(1, 2)
+    } else if (fargenummer == 9) {
+        led.plot(1, 1)
+    } else if (fargenummer == 10) {
+        // Lag regnbue og lagre fargene
+        led.plot(1, 0)
+    }
+    if (program == 1) {
+        led.plot(4, 4)
+    } else if (program == 2) {
+        led.plot(4, 3)
+    } else if (program == 3) {
+        led.plot(4, 2)
+    } else if (program == 4) {
+        led.plot(4, 1)
+    }
+}
+input.onButtonPressed(Button.B, function () {
+    if (program > 4) {
+        program = 1
+    }
+})
 let lysstyrke = 0
 let teller = 0
 let regnbue = false
@@ -93,8 +94,8 @@ let hue = 0
 let farge = 0
 let fargenummer = 0
 let program = 0
-let strip: neopixel.Strip = null
 let farger: number[] = []
+let strip: neopixel.Strip = null
 strip = neopixel.create(DigitalPin.P0, 16, NeoPixelMode.RGB)
 program = 1
 fargenummer = 1
